@@ -1,0 +1,25 @@
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4 text-red-600">Agregar producto</h2>
+  <div class="mb-4">
+    <input [(ngModel)]="newName" placeholder="Nombre del producto" class="border p-2 mr-2">
+    <input [(ngModel)]="newPrice" placeholder="Precio en ETH" type="number" class="border p-2 mr-2">
+    <button (click)="addProduct()" class="bg-blue-500 text-white px-4 py-2">Agregar</button>
+  </div>
+
+  <div *ngIf="products.length > 0" class="grid gap-4">
+    <div *ngFor="let product of products" class="bg-white p-4 rounded shadow">
+      <p><strong>ID:</strong> {{ product.id }}</p>
+      <p><strong>Nombre:</strong> {{ product.name }}</p>
+      <p><strong>Precio:</strong> {{ product.price | number: '1.4-4' }} ETH</p>
+      <p><strong>Estado:</strong> {{ product.sold ? 'Vendido' : 'Disponible' }}</p>
+      <button *ngIf="!product.sold" (click)="buyProduct(product)" class="bg-green-500 text-white px-4 py-2 mt-2">
+        Comprar
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="products.length === 0" class="text-center text-gray-500 mt-8">
+    No hay productos cargados.
+  </div>
+</div>
+

@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toast-success {
+  background-color: #22c55e !important;
+  color: #fff !important;
+}
+
+.toast-error {
+  background-color: #ef4444 !important;
+  color: #fff !important;
+}
+
+h1 {
+  color: #e50914;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body {
+  background-color: #000;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #e50914; /* rojo tipo Netflix */
+}
