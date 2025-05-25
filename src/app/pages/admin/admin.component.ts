@@ -7,7 +7,7 @@ import { MarketplaceService } from '../../services/marketplace.service';
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin.component.html',
+  templateUrl: './admin.component.html'
 })
 export class AdminComponent implements OnInit {
   newName = '';
@@ -26,8 +26,12 @@ export class AdminComponent implements OnInit {
 
     for (let i = 1; i <= count; i++) {
       const product = await this.marketplace.getProduct(i);
-      product.price = parseFloat(this.marketplace.fromWei(product.price, 'ether')); // ✅ conversión a number
-      this.products.push(product);
+
+      this.products.push({
+        ...product,
+        price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), // ✅ numérico
+        rawPrice: product.price // original en wei, si se necesita
+      });
     }
   }
 
@@ -40,7 +44,8 @@ export class AdminComponent implements OnInit {
   }
 
   async buyProduct(product: any) {
-    await this.marketplace.buyProduct(product.id, product.price);
+    await this.marketplace.buyProduct(product.id, product.rawPrice); // ✅ usamos raw wei
     await this.loadProducts();
   }
 }
+

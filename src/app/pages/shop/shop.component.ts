@@ -7,7 +7,7 @@ import { MarketplaceService } from '../../services/marketplace.service';
   selector: 'app-shop',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './shop.component.html',
+  templateUrl: './shop.component.html'
 })
 export class ShopComponent implements OnInit {
   products: any[] = [];
@@ -20,24 +20,28 @@ export class ShopComponent implements OnInit {
 
   async loadProducts() {
     const count = await this.marketplace.getProductCount();
-    const all = [];
+    const loaded: any[] = [];
 
     for (let i = 1; i <= count; i++) {
       const product = await this.marketplace.getProduct(i);
       if (!product.sold) {
-        product.price = parseFloat(this.marketplace.fromWei(product.price, 'ether')); // ✅ conversión a number
-        all.push(product);
+        loaded.push({
+          ...product,
+          price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), // ✅ numérico
+          rawPrice: product.price
+        });
       }
     }
 
-    this.products = all;
+    this.products = loaded;
   }
 
   async buyProduct(product: any) {
-    await this.marketplace.buyProduct(product.id, product.price);
+    await this.marketplace.buyProduct(product.id, product.rawPrice);
     await this.loadProducts();
   }
 }
+
 
 
 
