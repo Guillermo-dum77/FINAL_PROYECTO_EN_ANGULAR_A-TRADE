@@ -27,7 +27,7 @@ export class ShopComponent implements OnInit {
       if (!product.sold) {
         loaded.push({
           ...product,
-          price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), // ✅ numérico
+          price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), // numérico
           rawPrice: product.price
         });
       }

@@ -29,8 +29,8 @@ export class AdminComponent implements OnInit {
 
       this.products.push({
         ...product,
-        price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), // ✅ numérico
-        rawPrice: product.price // original en wei, si se necesita
+        price: parseFloat(this.marketplace.fromWei(product.price, 'ether')), 
+        rawPrice: product.price 
       });
     }
   }
@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
   }
 
   async buyProduct(product: any) {
-    await this.marketplace.buyProduct(product.id, product.rawPrice); // ✅ usamos raw wei
+    await this.marketplace.buyProduct(product.id, product.rawPrice); 
     await this.loadProducts();
   }
 }
