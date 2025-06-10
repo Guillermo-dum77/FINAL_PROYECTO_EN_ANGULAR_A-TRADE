@@ -1,59 +1,80 @@
-# A-TradeDapp
+# A-trade - Ecommerce en Angular con Blockchain
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+Este proyecto es una aplicación de comercio electrónico desarrollada en Angular, que integra un contrato inteligente en Solidity para gestionar productos y transacciones de forma descentralizada utilizando Web3, Ganache y Truffle.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📦 Instalación y Configuración
 
-```bash
+### 1. Clonar el repositorio
+
+```
+git clone https://github.com/Guillermo-dum77/FINAL_PROYECTO_EN_ANGULAR_A-TRADE.git
+cd FINAL_PROYECTO_EN_ANGULAR_A-TRADE
+```
+### 2. Instalar las dependencias
+
+```
+npm install
+```
+
+### 3. Iniciar Ganache
+
+Abre Ganache y selecciona o crea un espacio de trabajo. Usa el puerto 7545 (por defecto).
+
+### 4. Compilar y migrar el Contrato
+
+```
+truffle compile
+truffle migrate
+```
+### 5. Reemplazar ABI y dirección del contrato
+
+Copia el contenido del ABI generado (Ecommerce.json) en el archivo:
+
+```
+src/assets/contract-config.json
+```
+
+Asegúrate de actualizar la dirección del contrato desplegado en la propiedad "contractAddress" de ese mismo archivo.
+
+### 6. Importar cuenta de Ganache a MetaMask
+
+Importa la clave privada de la primera cuenta de Ganache a MetaMask.
+
+Conéctate a la red personalizada http://127.0.0.1:7545
+
+### 7. Ejecutar la aplicación Angular
+
+```
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ⚠️ Posibles Riesgos en la Ejecución
 
-## Code scaffolding
+No ejecutar Ganache o configurarlo en el puerto correcto (7545).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+No actualizar correctamente la dirección del contrato o el ABI.
 
-```bash
-ng generate component component-name
+Usar una red incorrecta en MetaMask (debe ser localhost:7545).
+
+No importar las cuentas de Ganache en MetaMask correctamente.
+
+Migrar el contrato varias veces sin limpiar la red anterior.
+
+## ✅ Pruebas Realizadas
+Funcionalidad probada manualmente:
+
+Agregar productos desde el panel de administrador.
+
+Visualizar productos desde el panel de cliente (/shop).
+
+Comprar productos desde ambas interfaces.
+
+Verificación de estado del producto como "vendido" tras la compra.
+
+### Pruebas automatizadas del contrato inteligente (Truffle)
+
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+truffle test
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
